@@ -52,17 +52,10 @@ int main(int ac, char **av)
  *
  * Return: The return status of the program or built-in command
  */
-int shell_loop(char **av, inf_t *inf)
+int shell_loop(__attribute__((unused))char **av, inf_t *inf)
 {
 	ssize_t read_input_status = 0;
 	int built_in_status = 0;
-
-	/* to be removed*/
-	int i;
-	for (i = 0; av[i]; i++)
-	{
-		printf("%s", av[i]);
-	}
 
 
 	while (read_input_status isnot -1 and built_in_status isnot -2)
@@ -71,7 +64,18 @@ int shell_loop(char **av, inf_t *inf)
 		if (interactive_mode(inf) is TRUE)
 			_puts(PROMPT);
 		_eputchar(BUFFER_FLUSH);
-		read_input_status = get_input(inf); 
+		read_input_status = get_input(inf);
+		/*if (read_input_status isnot -1)
+		{
+
+		}*/
+
+		/* to be removed */
+		while (inf->command_buffer)
+			_puts(*(inf->command_buffer));
+
+
+
 
 
 	}

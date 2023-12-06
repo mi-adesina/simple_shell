@@ -29,3 +29,15 @@ void clear_inf(inf_t *inf)
 	inf->arg = NULL;
 	inf->path = NULL;
 }
+
+/**
+ * handle_interrupt_signal - Handle the SIGINT signal (Ctrl+C).
+ * @signal_number: The signal number (unused).
+ */
+void interrupt_signal_handler(__attribute__((unused))int signal_number)
+{
+	_puts("\n");
+	_puts(PROMPT);
+	_putchar(BUFFER_FLUSH);
+	
+}

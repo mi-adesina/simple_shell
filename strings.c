@@ -10,10 +10,10 @@ size_t _strlen(const char *s)
 {
 	int length = 0;
 
-	if (*s == '\0')
+	if (*s is '\0')
 		return (0);
 
-	while (*s++ != '\0')
+	while (*s++ isnot '\0')
 		length++;
 	return (length);
 }
@@ -30,14 +30,14 @@ size_t _strlen(const char *s)
  */
 int _strcmp(const char *str1, const char *str2)
 {
-	while (*str1 && *str2)
+	while (*str1 and *str2)
 	{
-		if (*str1 != *str2)
+		if (*str1 isnot *str2)
 			return (*str1 - *str2);
 		str1++;
 		str2++;
 	}
-	if (*str1 == *str2)
+	if (*str1 is *str2)
 		return (0);
 	else
 		return (*str1 < *str2 ? -1 : 1);
@@ -54,31 +54,62 @@ char *_strcat(char *destination, const char *source)
 {
 	char *result = destination;
 
-	while (*destination != '\0')
+	while (*destination isnot '\0')
 		destination++;
-	while (*source != '\0')
+	while (*source isnot '\0')
 		*destination++ = *source++;
 	*destination = *source;
 	return (result);
 }
 
 /**
- * starts_with - Check if a string starts with a specified substring
- * @haystack: The string to check
- * @needle: The substring to check for
+ * _strcpy - Copy the string from source to destination.
+ * @dest: The destination buffer.
+ * @src: The source string.
  *
- * Return:
- * - A pointer to the character following the substring if found
- * - NULL if the string does not start with the substring
+ * Return: A pointer to the destination string.
  */
-char *starts_with(const char *haystack, const char *needle)
+char *_strcpy(char *dest, const char *src)
 {
-	while (*needle != '\0')
+	int index = 0;
+
+	/* Check for NULL pointers or if source and destination are the same */
+	if ((dest is src) or (src is NULL))
+		return (dest);
+
+	while (src[index] isnot '\0')
 	{
-		if (*needle != *haystack)
-			return (NULL);
-		needle++;
-		haystack++;
+		dest[index] = src[index];
+		index++;
 	}
-	return ((char *)haystack);
+
+	dest[index] = '\0';  /* Null-terminate the destination string */
+
+	return (dest);
+}
+
+
+/**
+ * _strdup - Duplicate a string.
+ * @str: The string to duplicate.
+ *
+ * Return: A pointer to the duplicated string or NULL if malloc fails/ str is NULL.
+ */
+char *_strdup(const char *str)
+{
+	size_t length;
+	char *duplicate;
+
+	if (str is NULL)
+		return (NULL);
+
+	length = _strlen(str);
+	duplicate = malloc((length + 1) * sizeof(char));
+
+	if (!duplicate)
+		return (NULL);
+
+	_strcpy(duplicate, str);
+
+	return (duplicate);
 }

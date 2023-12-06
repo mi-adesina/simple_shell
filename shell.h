@@ -12,11 +12,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/wait.h>
-
-/* useful constant macros */
-#define PROMPT "#ghengis_khan$ "
-#define BUFFER_FLUSH -1
-#define WRITE_BUFFER_SIZE 4096
+#include <signal.h>
 
 #define bool int
 #define FALSE 0 
@@ -26,18 +22,38 @@
 #define is ==
 #define isnot !=
 
+
+/* useful constant macros */
+#define PROMPT "#ghengis_khan$ "
+#define BUFFER_FLUSH -1
+#define WRITE_BUFFER_SIZE 4096
+#define READ_BUFFER_SIZE 4096
+#define MY_GETLINE TRUE
+#define COMMAND_NORM 0
+#define COMMAND_OR 1
+#define COMMAND_AND 2
+#define COMMAND_CHAIN 3
+
+
+
 /*inf structure*/
 typedef struct pass_information
 {
 	int ac;
 	int read_fd;
+	int line_count_flag;
+	int error_number;
+	int command_buffer_type;
+	unsigned int line_count;
 	char **av;
 	char *arg;
 	char *path;
+	char **command_buffer;
+
 } inf_t;
 
 /* infromation structure initialization*/
-#define INF_INITIALIZATION {0, 0, NULL, NULL, NULL}
+#define INF_INITIALIZATION {0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL}
 
 /* shell.c */
 int shell_loop(char **av, inf_t *inf);
@@ -50,6 +66,14 @@ int _eputchar(char c);
 size_t _strlen(const char *s);
 int _strcmp(const char *str1, const char *str2);
 char *_strcat(char *destination, const char *source);
+char *_strcpy(char *dest, const char *src);
+char *_strdup(const char *str);
+
+
+/* more strings*/
+char *_strncpy(char *destination, const char *source, size_t n);
+char *_strchr(char *string, char character);
+char *_strncat(char *destination, const char *source, int n);
 char *starts_with(const char *haystack, const char *needle);
 
 /* IO functions*/
@@ -59,7 +83,19 @@ int _puts(char *s);
 /* ungrouped */
 int interactive_mode(inf_t *inf);
 void clear_inf(inf_t *inf);
+void interrupt_signal_handler(__attribute__((unused))int signal_number);
 
 /* getline*/
-ssize_t get_input(inf_t *inf)
+int _getline(inf_t *inf, char **ptr, size_t *length);
+ssize_t read_buffer(char *buf, size_t *buf_pos, inf_t *inf);
+ssize_t get_input(inf_t *inf);
+ssize_t input_buf(inf_t *inf, char **buf, size_t *len);
+
+/* dynamic memory */
+char *_memset(char *s, char byte_value, unsigned int num_bytes);
+void *_realloc(void *old_block, unsigned int old_size, unsigned int new_size);
+void ffree(char **pp);
+int bfree(void **ptr);
+
+
 #endif
