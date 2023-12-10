@@ -2,7 +2,7 @@
 
 /**
  * _getline - Read a line from a file descriptor and append it to a buffer.
- * @info: A pointer to the info_t structure containing file descriptor information.
+ * @inf: A pointer to the inf_t structure containing file descriptor infrmation.
  * @ptr: Address of pointer to buffer, preallocated or NULL.
  * @length: A pointer to the length of the buffer.
  *
@@ -61,8 +61,8 @@ int _getline(inf_t *inf, char **ptr, size_t *length)
  *            update the buffer position.
  * @buf: A pointer to the buffer where data will be read into.
  * @buf_pos: A pointer to the position within the buffer.
- * @inf: A pointer to the info_t structure containing file
- *        descriptor and buffer information.
+ * @inf: A pointer to the inf_t structure containing file
+ *        descriptor and buffer infrmation.
  *
  *
  * Return: The number of bytes read or an error code (negative value).
@@ -81,7 +81,7 @@ ssize_t read_buffer(char *buf, size_t *buf_pos, inf_t *inf)
 
 
 /**
- * get_input - Obtain input, handle command chaining, and update info structure.
+ * get_input - Obtain input, handle command chaining, and update inf structure.
  * @inf: Pointer to inf_t structure.
  *
  * Return: Number of bytes read or -1 on EOF.
@@ -130,7 +130,7 @@ ssize_t get_input(inf_t *inf)
 
 /**
  * input_buf - Read user input into the input buffer.
- * @info: A pointer to the info_t structure containing input and history information.
+ * @inf: A pointer to the inf_t structure containing input and history infrmation.
  * @buf: A pointer to the input buffer.
  * @len: A pointer to the length of the input buffer.
  *

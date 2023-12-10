@@ -29,11 +29,28 @@
 #define WRITE_BUFFER_SIZE 4096
 #define READ_BUFFER_SIZE 4096
 #define MY_GETLINE TRUE
+#define MY_STRTOK TRUE
 #define COMMAND_NORM 0
 #define COMMAND_OR 1
 #define COMMAND_AND 2
 #define COMMAND_CHAIN 3
+#define CONVERT_LOWER_CASE	1
+#define CONVERT_UNSIGNED	2
 
+extern char **environ;
+
+/**
+ * struct liststr - Structure for a linked list of integer-string pairs
+ * @num: An integer value
+ * @str: A string value
+ * @next: Pointer to the next element in the list
+ */
+typedef struct list_str
+{
+	int number;
+	char *str;
+	struct list_str *next;
+} list_t;
 
 
 /*inf structure*/
@@ -44,11 +61,19 @@ typedef struct pass_information
 	int line_count_flag;
 	int error_number;
 	int command_buffer_type;
+	int history_count;
+	int status;
+	int environ_changed;
+
 	unsigned int line_count;
-	char **av;
+
+	char *file_name;
 	char *arg;
 	char *path;
 	char **command_buffer;
+	char **av;
+	char **environ;
+
 
 } inf_t;
 
@@ -96,6 +121,26 @@ char *_memset(char *s, char byte_value, unsigned int num_bytes);
 void *_realloc(void *old_block, unsigned int old_size, unsigned int new_size);
 void ffree(char **pp);
 int bfree(void **ptr);
+
+/* environ.c */
+int populate_env_list(inf_t *inf);
+int _myenv(inf_t *inf);
+char *_getenv(inf_t *inf, const char *name);
+int _mysetenv(inf_t *inf);
+int _myunsetenv(inf_t *inf);
+
+/* environ_helper_functions.c */
+size_t print_and_count_environment_variables(const list_t *head);
+char **get_environ(inf_t *inf);
+int _unsetenv(inf_t *inf, char *var);
+int _setenv(inf_t *inf, char *var, char *value)
+
+
+/* linked_list.c */
+list_t *add_node(list_t **head, const char *str, int number);
+list_t *add_node_end(list_t **head, const char *str, int number);
+int delete_node_at_index(list_t **head, unsigned int index);
+void free_list(list_t **head_ptr);
 
 
 #endif

@@ -41,6 +41,8 @@ int main(int ac, char **av)
 		}
 		inf->read_fd = fd;
 	}
+	read_history(inf);
+	populate_environ_list(inf);
 	shell_loop(av, inf);
 	return (EXIT_SUCCESS);
 }
@@ -48,7 +50,7 @@ int main(int ac, char **av)
 /**
  * shell_loop - Main loop for a shell.
  * @av: An array of strings containing command-line arguments.
- * @inf: A pointer to the program's information structure.
+ * @inf: A pointer to the program's infrmation structure.
  *
  * Return: The return status of the program or built-in command
  */

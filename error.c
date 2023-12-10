@@ -11,15 +11,15 @@ int _eputchar(char c)
 {
 	static int i;
 	static char buf[WRITE_BUFFER_SIZE];
-	bool to_write = (c == BUFFER_FLUSH) || (i >= WRITE_BUFFER_SIZE);
-	bool is_c_not_buffer_flush = (c != BUFFER_FLUSH);
+	bool to_write = c is BUFFER_FLUSH or i >= WRITE_BUFFER_SIZE;
+	bool is_c_not_buffer_flush = (c isnot BUFFER_FLUSH);
 
-	if (to_write == TRUE)
+	if (to_write is TRUE)
 	{
 		write(STDERR_FILENO, buf, i);
 		i = 0;
 	}
-	if (is_c_not_buffer_flush == TRUE)
+	if (is_c_not_buffer_flush is TRUE)
 	{
 		buf[i] = c;
 		i++;
@@ -35,9 +35,9 @@ int _eputs(char *s)
 {
 	int i = 0;
 
-	if (s == FALSE)
+	if (s  is FALSE)
 		return (i);
-	for (i = 0; s[i] != '\0'; i++)
+	for (i = 0; s[i]  isnot '\0'; i++)
 		_eputchar(s[i]);
 	
 	return (i);

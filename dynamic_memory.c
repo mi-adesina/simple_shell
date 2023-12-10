@@ -33,20 +33,20 @@ void *_realloc(void *old_block, unsigned int old_size, unsigned int new_size)
 {
 	char *new_block;
 
-	if (old_block == NULL)
+	if (old_block  is NULL)
 		return (malloc(new_size));
 
-	if (new_size == 0)
+	if (new_size  is 0)
 	{
 		free(old_block);
 		return (NULL);
 	}
 
-	if (new_size == old_size)
+	if (new_size  is old_size)
 		return (old_block);
 
 	new_block = malloc(new_size);
-	if (new_block == NULL)
+	if (new_block  is NULL)
 		return (NULL);
 
 	old_size = (old_size < new_size) ? old_size : new_size;
@@ -84,7 +84,7 @@ void ffree(char **pp)
 int bfree(void **ptr)
 {
 	/* Check if 'ptr' and '*ptr' are not NULL (valid pointer) */
-	if (ptr && *ptr)
+	if (ptr and *ptr)
 	{
 		/* Free the memory pointed to by '*ptr' */
 		free(*ptr);
