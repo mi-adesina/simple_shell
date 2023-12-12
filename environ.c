@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * populate_env_list - Populate the inf_t structure's env field
+ * populate_environ_list - Populate the inf_t structure's env field
  *                     with environment variables.
  * @inf: Pointer to the inf_t structure.
  *
  * Return: 0 on success, -1 on failure.
  */
-int populate_env_list(inf_t *inf)
+int populate_environ_list(inf_t *inf)
 {
 	list_t *env_list = NULL;
 	size_t index = 0;
@@ -21,7 +21,6 @@ int populate_env_list(inf_t *inf)
 	inf->environ_list = env_list;
 	return (0);
 }
-
 
 /**
  * _env - Print environment variables.

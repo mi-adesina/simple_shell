@@ -52,7 +52,6 @@ int _putfd(char character, int file_descriptor)
 	return (1);
 }
 
-
 /**
  * _putsfd - Write a string to a file descriptor.
  * @input_string: The string to write.

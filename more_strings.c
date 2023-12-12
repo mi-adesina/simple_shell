@@ -47,7 +47,6 @@ char *_strchr(char *string, char character)
 	return (NULL);
 }
 
-
 /**
  * _strncat - Concatenate at most n characters from source to destination.
  * @destination: The destination buffer.

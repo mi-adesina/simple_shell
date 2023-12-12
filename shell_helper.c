@@ -46,3 +46,74 @@ void interrupt_signal_handler(__attribute__((unused)) int signal_number)
 	_puts(PROMPT);
 	_putchar(BUFFER_FLUSH);
 }
+
+/**
+ * is_chain - Check for command chaining symbols and update command buffer type
+ * @inf: A pointer to the infrmation structure
+ * @input: The input string to be checked for chaining symbols
+ * @position: A pointer to the current position in the input string
+ *
+ * Return: 1 if a command chaining symbol is found, 0 otherwise
+ */
+int is_chain(inf_t *inf, char *input, size_t *position)
+{
+	size_t currentPosistion = *position;
+
+	while (input[currentPosistion] == '|' && input[currentPosistion + 1] == '|')
+	{
+		input[currentPosistion] = '\0';
+		currentPosistion++;
+		inf->command_buffer_type = COMMAND_OR;
+	}
+	if (input[currentPosistion] == '&' && input[currentPosistion + 1] == '&')
+	{
+		input[currentPosistion] = '\0';
+		currentPosistion++;
+		inf->command_buffer_type = COMMAND_AND;
+	}
+	else if (input[currentPosistion] == ';') /* Found end of this command */
+	{
+		input[currentPosistion] = '\0'; /* Replace semicolon with null */
+		inf->command_buffer_type = COMMAND_CHAIN;
+	}
+	else
+	{
+		return 0;
+	}
+
+	*position = currentPosistion;
+	return 1;
+}
+
+/**
+ * check_chain - Check command chaining conditions and update
+ *               buffer and position.
+ * @inf: A pointer to the infrmation structure.
+ * @buffer: The input buffer to be checked.
+ * @position: A pointer to the current position in the buffer.
+ * @i: The current position in the buffer.
+ * @buffer_length: The length of the buffer.
+ */
+void check_chain(inf_t *inf, char *buffer, size_t *position, size_t i, size_t buffer_length)
+{
+	size_t currentPosistion = *position;
+
+	if (inf->command_buffer_type == COMMAND_AND)
+	{
+		if (inf->status)
+		{
+			buffer[i] = '\0';
+			currentPosistion = buffer_length;
+		}
+	}
+	if (inf->command_buffer_type == COMMAND_OR)
+	{
+		if (!inf->status)
+		{
+			buffer[i] = '\0';
+			currentPosistion = buffer_length;
+		}
+	}
+
+	*position = currentPosistion;
+}

@@ -79,7 +79,6 @@ ssize_t read_buffer(char *buf, size_t *buf_pos, inf_t *inf)
 	return (bytes);
 }
 
-
 /**
  * get_input - Obtain input, handle command chaining, and update inf structure.
  * @inf: Pointer to inf_t structure.
@@ -103,7 +102,7 @@ ssize_t get_input(inf_t *inf)
 		j = i;
 		p = chain_buffer + i;  /* Get pointer for return */
 
-		/*check_chain(inf, chain_buffer, &j, i, len); */
+		/* check_chain(inf, chain_buffer, &j, i, len); */
 		while (j < len)  /* Iterate to the semicolon or end */
 		/*{
 			if (is_chain(inf, chain_buffer, &j) isnot FALSE)
