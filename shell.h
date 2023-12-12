@@ -83,7 +83,7 @@ typedef struct pass_information
 } inf_t;
 
 /* infromation structure initialization*/
-#define INF_INITIALIZATION {0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL}
+#define INF_INITIALIZATION {0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}
 
 /* shell.c */
 int shell_loop(char **av, inf_t *inf);

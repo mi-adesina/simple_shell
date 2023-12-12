@@ -100,3 +100,19 @@ char *starts_with(const char *haystack, const char *needle)
 	}
 	return ((char *)haystack);
 }
+
+/**
+ * replace_string - Replace the content of a string with a new string
+ * @original_string: A pointer to the old string
+ * @new_string: The new string to replace the old content
+ *
+ * Return: 1 if the replacement is successful, 0 otherwise
+ */
+int replace_string(char **original_string, char *new_string)
+{
+	free(*original_string);
+	*original_string = new_string;
+	return (1);
+}
+
+

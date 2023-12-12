@@ -76,41 +76,105 @@ int replace_variables(inf_t *inf)
 }
 
 /**
- * replace_string - Replace the content of a string with a new string
- * @original_string: A pointer to the old string
- * @new_string: The new string to replace the old content
+ * is_chain - Check for command chaining symbols and update command buffer type
+ * @inf: A pointer to the infrmation structure
+ * @input: The input string to be checked for chaining symbols
+ * @position: A pointer to the current position in the input string
  *
- * Return: 1 if the replacement is successful, 0 otherwise
+ * Return: 1 if a command chaining symbol is found, 0 otherwise
  */
-int replace_string(char **original_string, char *new_string)
+int is_chain(inf_t *inf, char *input, size_t *position)
 {
-	free(*original_string);
-	*original_string = new_string;
-	return (1);
+	size_t currentPosistion = *position;
+
+	while (input[currentPosistion] == '|' && input[currentPosistion + 1] == '|')
+	{
+		input[currentPosistion] = '\0';
+		currentPosistion++;
+		inf->command_buffer_type = COMMAND_OR;
+	}
+	if (input[currentPosistion] == '&' && input[currentPosistion + 1] == '&')
+	{
+		input[currentPosistion] = '\0';
+		currentPosistion++;
+		inf->command_buffer_type = COMMAND_AND;
+	}
+	else if (input[currentPosistion] == ';') /* Found end of this command */
+	{
+		input[currentPosistion] = '\0'; /* Replace semicolon with null */
+		inf->command_buffer_type = COMMAND_CHAIN;
+	}
+	else
+	{
+		return 0;
+	}
+
+	*position = currentPosistion;
+	return 1;
 }
 
 /**
- * dup_characters - Duplicate characters from a source string within
- *             a specified range.
- * @pathstr: The source string to duplicate characters from.
- * @start_idx: The starting index (inclusive) for character duplication.
- * @end_idx: The ending index (exclusive) for character duplication.
- *
- * Return: pointer to new buffer
+ * check_chain - Check command chaining conditions and update
+ *               buffer and position.
+ * @inf: A pointer to the infrmation structure.
+ * @buffer: The input buffer to be checked.
+ * @position: A pointer to the current position in the buffer.
+ * @i: The current position in the buffer.
+ * @buffer_length: The length of the buffer.
  */
-char *dup_characters(char *pathstr, int start_idx, int end_idx)
+void check_chain(inf_t *inf, char *buffer, size_t *position, size_t i, size_t buffer_length)
 {
-    static char duplicated_buffer[1024];
-    int source_idx = start_idx, duplicated_idx = 0;
+	size_t currentPosistion = *position;
 
-    while (source_idx < end_idx)
-    {
-        if (pathstr[source_idx] != ':')
-        {
-            duplicated_buffer[duplicated_idx++] = pathstr[source_idx];
-        }
-        source_idx++;
-    }
-    duplicated_buffer[duplicated_idx] = '\0';
-    return duplicated_buffer;
+	if (inf->command_buffer_type == COMMAND_AND)
+	{
+		if (inf->status)
+		{
+			buffer[i] = '\0';
+			currentPosistion = buffer_length;
+		}
+	}
+	if (inf->command_buffer_type == COMMAND_OR)
+	{
+		if (!inf->status)
+		{
+			buffer[i] = '\0';
+			currentPosistion = buffer_length;
+		}
+	}
+
+	*position = currentPosistion;
+}
+
+/**
+ * replace_alias - Replace an alias with its value in the command arguments
+ * @inf: A pointer to the infrmation structure
+ *
+ * Return: 1 if alias replacement is successful, 0 otherwise
+ */
+int replace_alias(inf_t *inf)
+{
+	int attempt;
+	char *alias_value;
+	list_t *alias_entry;
+
+	for (attempt = 0; attempt < 10; attempt++)
+	{
+		alias_entry = node_starts_with(inf->alias, inf->av[0], '=');
+		if (!alias_entry)
+			return 0;
+
+		free(inf->av[0]);
+		alias_value = _strchr(alias_entry->str, '=');
+		if (!alias_value)
+			return 0;
+
+		alias_value = _strdup(alias_value + 1);
+		if (!alias_value)
+			return 0;
+
+		inf->av[0] = alias_value;
+	}
+
+	return 1;
 }
