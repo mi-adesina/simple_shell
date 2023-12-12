@@ -52,7 +52,6 @@ int _putfd(char character, int file_descriptor)
 	return (1);
 }
 
-#include <unistd.h>
 
 /**
  * _putsfd - Write a string to a file descriptor.
@@ -74,4 +73,48 @@ int _putsfd(char *input_string, int fd)
 	}
 
 	return (characters_written);
+}
+
+/**
+ * print_integer - Print an integer to the specified file descriptor.
+ *                with error handling.
+ * @input: The integer to print.
+ * @fd: The file descriptor (STDOUT_FILENO or STDERR_FILENO) to which to print.
+ *
+ * Return: The number of characters printed.
+ */
+int print_integer(int input, int fd)
+{
+	int (*output_char)(char) = _putchar;
+	int digit, count = 0;
+	unsigned int absolute_value, current;
+
+	if (fd == STDERR_FILENO)
+		output_char = _eputchar;
+
+	if (input < 0)
+	{
+		absolute_value = -input;
+		output_char('-');
+		count++;
+	}
+	else
+		absolute_value = input;
+
+	current = absolute_value;
+
+	for (digit = 1000000000; digit > 1; digit /= 10)
+	{
+		if (absolute_value / digit)
+		{
+			output_char('0' + current / digit);
+			count++;
+		}
+		current %= digit;
+	}
+
+	output_char('0' + current);
+	count++;
+
+	return (count);
 }

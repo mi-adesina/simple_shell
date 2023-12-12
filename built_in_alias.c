@@ -111,3 +111,36 @@ int unset_alias(inf_t *inf, char *unset)
 
 	return unsetResult;
 }
+
+/**
+ * replace_alias - Replace an alias with its value in the command arguments
+ * @inf: A pointer to the infrmation structure
+ *
+ * Return: 1 if alias replacement is successful, 0 otherwise
+ */
+int replace_alias(inf_t *inf)
+{
+	int attempt;
+	char *alias_value;
+	list_t *alias_entry;
+
+	for (attempt = 0; attempt < 10; attempt++)
+	{
+		alias_entry = node_starts_with(inf->alias_list, inf->av[0], '=');
+		if (!alias_entry)
+			return 0;
+
+		free(inf->av[0]);
+		alias_value = _strchr(alias_entry->str, '=');
+		if (!alias_value)
+			return 0;
+
+		alias_value = _strdup(alias_value + 1);
+		if (!alias_value)
+			return 0;
+
+		inf->av[0] = alias_value;
+	}
+
+	return 1;
+}

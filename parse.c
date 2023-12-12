@@ -79,3 +79,4 @@ char *find_path(inf_t *inf, char *pathstr, char *command)
 
     return NULL;
 }
+

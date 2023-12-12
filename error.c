@@ -42,3 +42,51 @@ int _eputs(char *s)
 	
 	return (i);
 }
+
+/**
+ * _erratoi - Convert a string to an integer with error handling.
+ * @s: The input string to convert to an integer.
+ *
+ * Return: The converted integer, or -1 on error.
+ */
+int _erratoi(char *s)
+{
+	int index = 0;
+	unsigned long int result = 0;
+
+	if (*s == '+')
+		s++;  /* Skip leading '+'  */
+
+	for (index = 0; s[index] != '\0'; index++)
+	{
+		if (s[index] >= '0' && s[index] <= '9')
+		{
+			result *= 10;
+			result += (s[index] - '0');
+
+			if (result > INT_MAX)
+				return (-1);
+		}
+		else
+			return (-1); /* Non-numeric character found. */
+	}
+
+	return (result);
+}
+
+/**
+ * print_error - Print an error message with additional infrmation.
+ * @inf: A pointer to the inf_t structure containing shell infrmation.
+ * @estr: The error message to print.
+ */
+void print_error(inf_t *inf, char *estr)
+{
+	_eputs(inf->file_name);
+	_eputs(": ");
+	print_integer(inf->line_count, STDERR_FILENO);
+	_eputs(": ");
+	_eputs(inf->av[0]);
+	_eputs(": ");
+	_eputs(estr);
+}
+
