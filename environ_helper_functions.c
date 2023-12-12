@@ -29,7 +29,7 @@ size_t print_and_count_environment_variables(const list_t *head)
  */
 char **get_environ(inf_t *inf)
 {
-        if (!inf->environ or inf->environ_changed)
+        if (!inf->environ_list or inf->environ_changed)
         {
                 inf->environ = list_to_strings(inf->environ);
                 inf->environ_changed = 0;
@@ -47,7 +47,7 @@ char **get_environ(inf_t *inf)
  */
 int _unsetenv(inf_t *inf, char *var)
 {
-	list_t *current_node = inf->environ;
+	list_t *current_node = inf->environ_list;
 	size_t index = 0;
 	char *p;
 
@@ -62,9 +62,9 @@ int _unsetenv(inf_t *inf, char *var)
 		if (p and *p  is '=')
 		{
 			/* Update the 'environ_changed' flag and reset the index */
-			inf->environ_changed = delete_node_at_index(&(inf->environ), index);
+			inf->environ_changed = delete_node_at_index(&(inf->environ_list), index);
 			index = 0;
-			current_node = inf->environ;
+			current_node = inf->environ_list;
 			continue;
 		}
 
@@ -99,7 +99,7 @@ int _setenv(inf_t *inf, char *var, char *value)
 	_strcpy(buf, var);
 	_strcat(buf, "=");
 	_strcat(buf, value);
-	current_node = inf->environ;
+	current_node = inf->environ_list;
 	while (current_node)
 	{
 		p = starts_with(current_node->str, var);
@@ -112,7 +112,7 @@ int _setenv(inf_t *inf, char *var, char *value)
 		}
 		current_node = current_node->next;
 	}
-	add_node_end(&(inf->environ), buf, 0);
+	add_node_end(&(inf->environ_list), buf, 0);
 	free(buf);
 	inf->environ_changed = 1;
 	return (0);

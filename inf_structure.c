@@ -45,7 +45,7 @@ void set_inf(inf_t *inf, char **av)
 	inf->ac = i;
 
 	replace_alias(inf);
-	replace_vars(inf);
+	replace_variables(inf);
     }
 }
 
@@ -67,13 +67,13 @@ void free_inf(inf_t *inf, int all)
 	if (!inf->command_buffer)
 	    free(inf->arg);
 
-	/* if (inf->alias)
+	if (inf->alias)
 	    free_list(&(inf->alias));
-	if (inf->env)
-		free_list(&(inf->env));
+	if (inf->environ_list)
+		free_list(&(inf->environ_list));
 
 	if (inf->history)
-	    free_list(&(inf->history)); */
+	    free_list(&(inf->history));
 
 	ffree(inf->environ);
 	inf->environ = NULL;

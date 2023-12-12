@@ -18,7 +18,7 @@ int populate_env_list(inf_t *inf)
 		index++;
 	}
 
-	inf->environ = env_list;
+	inf->environ_list = env_list;
 	return (0);
 }
 
@@ -31,7 +31,7 @@ int populate_env_list(inf_t *inf)
  */
 int _myenv(inf_t *inf)
 {
-	print_and_count_environment_variables(inf->environ);
+	print_and_count_environment_variables(inf->environ_list);
 	return (0);
 }
 
@@ -51,7 +51,7 @@ char *_getenv(inf_t *inf, const char *name)
 		return NULL;
 	}
 
-	list_t *current_node = inf->environ;
+	list_t *current_node = inf->environ_list;
 	char *variable_value;
 
 	/* Traverse the linked list */
@@ -61,7 +61,7 @@ char *_getenv(inf_t *inf, const char *name)
 		variable_value = starts_with(current_node->str, name);
 
 		/* Check if a match is found */
-		if (variable_value && *variable_value)
+		if (variable_value and *variable_value)
 		{
 			return variable_value;
 		}

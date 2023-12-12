@@ -116,3 +116,23 @@ void free_list(list_t **head_ptr)
 
 	free_list(head_ptr);
 }
+
+/**
+ * list_len- Count the number of nodes in a linked list recursively.
+ * @head: A pointer to the head of the linked list.
+ *
+ * Return: The number of nodes in the linked list.
+ */
+size_t list_len(const list_t *head)
+{
+	if (!head)
+	{
+		return (0);
+	}
+	else
+	{
+		return (1 + list_len(head->next));
+	}
+}
+
+

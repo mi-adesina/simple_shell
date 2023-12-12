@@ -29,3 +29,49 @@ int _puts(char *s)
 	
 	return (i);
 }
+
+/**
+ * _putfd - Write a character to a file descriptor with buffering.
+ * @character: The character to write.
+ * @file_descriptor: The file descriptor to write to.
+ *
+ * Return: 1 on success, -1 on failure.
+ */
+int _putfd(char character, int file_descriptor)
+{
+	static int index;
+	static char buffer[WRITE_BUFFER_SIZE];
+
+	if (character is BUFFER_FLUSH or index >= WRITE_BUFFER_SIZE)
+	{
+		write(file_descriptor, buffer, index);
+		index = 0;
+	}
+	if (character isnot BUFFER_FLUSH)
+		buffer[index++] = character;
+	return (1);
+}
+
+#include <unistd.h>
+
+/**
+ * _putsfd - Write a string to a file descriptor.
+ * @input_string: The string to write.
+ * @fd: The file descriptor to write to.
+ *
+ * Return: The number of characters written on success, 0 on failure.
+ */
+int _putsfd(char *input_string, int fd)
+{
+	int characters_written = 0;
+
+	if (!input_string)
+		return (0);
+
+	while (*input_string)
+	{
+		characters_written += _putfd(*input_string++, fd);
+	}
+
+	return (characters_written);
+}

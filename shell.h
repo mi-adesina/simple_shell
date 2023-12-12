@@ -74,6 +74,11 @@ typedef struct pass_information
 	char **av;
 	char **environ;
 
+	list_t *history_list;
+	list_t *environ_list;
+	list_t *alias_list
+
+
 
 } inf_t;
 
