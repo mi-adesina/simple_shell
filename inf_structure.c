@@ -67,13 +67,13 @@ void free_inf(inf_t *inf, int all)
 	if (!inf->command_buffer)
 	    free(inf->arg);
 
-	if (inf->alias)
-	    free_list(&(inf->alias));
+	if (inf->alias_list)
+	    free_list(&(inf->alias_list));
 	if (inf->environ_list)
 		free_list(&(inf->environ_list));
 
-	if (inf->history)
-	    free_list(&(inf->history));
+	if (inf->history_list)
+	    free_list(&(inf->history_list));
 
 	ffree(inf->environ);
 	inf->environ = NULL;

@@ -160,7 +160,7 @@ int replace_alias(inf_t *inf)
 
 	for (attempt = 0; attempt < 10; attempt++)
 	{
-		alias_entry = node_starts_with(inf->alias, inf->av[0], '=');
+		alias_entry = node_starts_with(inf->alias_list, inf->av[0], '=');
 		if (!alias_entry)
 			return 0;
 
