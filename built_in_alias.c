@@ -29,12 +29,12 @@ int print_alias(list_t *node)
 }
 
 /**
- * _alias - Manage shell aliases: print, set, or match and print.
+ * _myalias - Manage shell aliases: print, set, or match and print.
  * @inf: A pointer to the inf_t structure containing alias data.
  *
  * Return: Always returns 0 to indicate success.
  */
-int _alias(inf_t *inf)
+int _myalias(inf_t *inf)
 {
 	int i = 0;
 	char *equalSignPos = NULL;

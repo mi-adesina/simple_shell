@@ -117,10 +117,12 @@ char **strtow_custom(const char *str, char delim)
  */
 void free_word_array(char **word_array, size_t size)
 {
+	size_t i;
+	
 	if (!word_array)
 		return;
 
-	for (size_t i = 0; i < size; i++)
+	for (i = 0; i < size; i++)
 		free(word_array[i]);
 
 	free(word_array);

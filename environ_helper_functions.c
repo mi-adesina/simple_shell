@@ -31,7 +31,7 @@ char **get_environ(inf_t *inf)
 {
         if (!inf->environ_list or inf->environ_changed)
         {
-                inf->environ = list_to_strings(inf->environ);
+                inf->environ = list_to_strings(inf->environ_list);
                 inf->environ_changed = 0;
         }
 

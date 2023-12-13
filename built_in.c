@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * _exit - Handle the shell exit behavior.
+ * _myexit - Handle the shell exit behavior.
  * @inf: A pointer to the inf_t structure containing shell information.
  *
  * Return: -2 to indicate the shell should exit, or 1 if there is an error.
  */
-int _exit(inf_t *inf)
+int _myexit(inf_t *inf)
 {
 	int exit_status;
 
@@ -81,12 +81,12 @@ int _cd(inf_t *inf)
 }
 
 /**
- * _help - Display help or information.
+ * _myhelp - Display help or information.
  * @inf: A pointer to the inf_t structure containing shell information.
  *
  * Return: Always returns 0 to indicate success.
  */
-int _help(inf_t *inf)
+int _myhelp(inf_t *inf)
 {
 	char **arguments;
 
@@ -94,6 +94,11 @@ int _help(inf_t *inf)
 
 	_puts("help call works. Function not yet implemented \n");
         return (0);
+
+	/* just a trick */
+	if (0)
+		_puts(*arguments); /* unused variable workaround */
+	return (0);
 }
 
 /**

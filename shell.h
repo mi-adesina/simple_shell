@@ -76,10 +76,7 @@ typedef struct pass_information
 
 	list_t *history_list;
 	list_t *environ_list;
-	list_t *alias_list
-
-
-
+	list_t *alias_list;
 } inf_t;
 
 /* infromation structure initialization*/
@@ -90,37 +87,32 @@ typedef struct pass_information
  *@type: the builtin command flag
  *@func: the function
  */
-struct BuiltInCommand {
+typedef struct BuiltInCommand {
     char *type;
     int (*func)(inf_t *);
-};
+}command_table;
 
-/* Array of built-in commands along with their corresponding functions */
-struct BuiltInCommand built_in_commands[] = {
-	{"exit", _exit},
-	{"env", _myenv},
-	{"help", _help},
-	{"history", _history},
-	{"setenv", _mysetenv},
-	{"unsetenv", _myunsetenv},
-	{"cd", _cd},
-	{"alias", _alias},
-	{NULL, NULL}  /* Sentinel entry to mark the end of the array */
-};
 
 
 /* built_in_alias.c */
 int print_alias(list_t *node);
-int _alias(inf_t *inf);
+int _myalias(inf_t *inf);
 int set_alias(inf_t *inf, char *alias_string);
 int unset_alias(inf_t *inf, char *unset);
 int replace_alias(inf_t *inf);
 
 /* built_in.c */
-int _exit(inf_t *inf);
+int _myexit(inf_t *inf);
 int _cd(inf_t *inf);
-int _help(inf_t *inf);
+int _myhelp(inf_t *inf);
 int _history(inf_t *inf);
+
+/* commands.c */
+int find_builtin(inf_t *inf);
+void find_command(inf_t *inf);
+void fork_command(inf_t *inf);
+void wait_and_update_status(inf_t *inf);
+void handle_exit_status(inf_t *inf);
 
 /* dynamic memory */
 char *_memset(char *s, char byte_value, unsigned int num_bytes);
@@ -149,7 +141,7 @@ void print_error(inf_t *inf, char *estr);
 
 /* even_more_strings.c */
 char *dup_characters(char *pathstr, int start_idx, int end_idx);
-int is_delim(char character, char *delimiters);
+int is_delim(char character, const char *delimiters);
 char *convert_long_to_string(long int num, int base, int cFlag);
 
 /* getline*/

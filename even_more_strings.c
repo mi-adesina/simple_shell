@@ -33,7 +33,7 @@ char *dup_characters(char *pathstr, int start_idx, int end_idx)
  *
  * Return: 1 if 'character' is a delimiter, 0 otherwise.
  */
-int is_delim(char character, char *delimiters)
+int is_delim(char character, const char *delimiters)
 {
         /* Iterate through the 'delimiters' string. */
         while (*delimiters)

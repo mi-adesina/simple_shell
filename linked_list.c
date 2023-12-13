@@ -10,31 +10,27 @@
  */
 list_t *add_node(list_t **head, const char *str, int number)
 {
-	list_t *new_head;
+	list_t *new;
 
 	if (!head)
 		return (NULL);
-
-	new_head = malloc(sizeof(list_t));
-	if (!new_head)
+	new = malloc(sizeof(list_t));
+	if (!new)
 		return (NULL);
-
-	_memset((void *)new_head, 0, sizeof(list_t));
-	new_head->number = number;
-
+	_memset((void *)new, 0, sizeof(list_t));
+	new->number = number;
 	if (str)
 	{
-		new_head->str = _strdup(str);
-		if (!new_head->str)
+		new->str = _strdup(str);
+		if (!new->str)
 		{
-			free(new_head);
+			free(new);
 			return (NULL);
 		}
 	}
-
-	new_head->next = *head;
-	*head = new_head;
-	return (new_head);
+	new->next = *head;
+	*head = new;
+	return (new);
 }
 
 /**
@@ -47,32 +43,35 @@ list_t *add_node(list_t **head, const char *str, int number)
  */
 list_t *add_node_end(list_t **head, const char *str, int number)
 {
+	list_t *new, *current_node;
+
 	if (!head)
-		return NULL;
-
-	list_t *new_node = malloc(sizeof(list_t));
-	if (!new_node)
-		return NULL;
-
-	_memset((void *)new_node, 0, sizeof(list_t));
-	new_node->number = number;
-
+		return (NULL);
+	current_node = *head;
+	new = malloc(sizeof(list_t));
+	if (!new)
+		return (NULL);
+	_memset((void *)new, 0, sizeof(list_t));
+	new->number = number;
 	if (str)
 	{
-		new_node->str = _strdup(str);
-		if (!new_node->str)
+		new->str = _strdup(str);
+		if (!new->str)
 		{
-			free(new_node);
-			return NULL;
+			free(new);
+			return (NULL);
 		}
 	}
-
-	if (*head)
-		(*head)->next = add_node_end(&((*head)->next), str, number);
+	if (current_node)
+	{
+		while (current_node->next)
+			current_node = current_node->next;
+		current_node->next = new;
+	}
 	else
-		*head = new_node;
+		*head = new;
 
-	return new_node;
+	return (new);
 }
 
 /**
@@ -105,10 +104,12 @@ int delete_node_at_index(list_t **head, unsigned int index)
  */
 void free_list(list_t **head_ptr)
 {
+	list_t *node;
+
 	if (!head_ptr or !*head_ptr)
 		return;
 
-	list_t *node = *head_ptr;
+	node = *head_ptr;
 	*head_ptr = node->next;
 
 	free(node->str);
@@ -134,5 +135,6 @@ size_t list_len(const list_t *head)
 		return (1 + list_len(head->next));
 	}
 }
+
 
 

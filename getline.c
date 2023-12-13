@@ -102,13 +102,14 @@ ssize_t get_input(inf_t *inf)
 		j = i;
 		p = chain_buffer + i;  /* Get pointer for return */
 
-		/* check_chain(inf, chain_buffer, &j, i, len); */
+		check_chain(inf, chain_buffer, &j, i, len);
 		while (j < len)  /* Iterate to the semicolon or end */
-		/*{
+		{
+		
 			if (is_chain(inf, chain_buffer, &j) isnot FALSE)
 				break;
 			j++;
-		}*/
+		}
 
 		i = j + 1;  /* Increment past nulled ';' */
 		if (i >= len)  /* Reached end of buffer? */

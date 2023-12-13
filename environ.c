@@ -43,6 +43,9 @@ int _myenv(inf_t *inf)
  */
 char *_getenv(inf_t *inf, const char *name)
 {
+	list_t *current_node;
+	char *variable_value;
+
 	/* Check for NULL parameters */
 	if (!inf or !name)
 	{
@@ -50,8 +53,7 @@ char *_getenv(inf_t *inf, const char *name)
 		return NULL;
 	}
 
-	list_t *current_node = inf->environ_list;
-	char *variable_value;
+	current_node = inf->environ_list;
 
 	/* Traverse the linked list */
 	while (current_node)
