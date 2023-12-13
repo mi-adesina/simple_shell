@@ -34,8 +34,8 @@ int find_builtin(inf_t *inf)
 			break; /* Exit the loop after finding and executing the command */
 		}
 	}
-
-	return (built_in_return); /* Return the return status of the built-in command */
+	/* Return the return status of the built-in command */
+	return (built_in_return);
 }
 
 /**
@@ -109,7 +109,8 @@ void fork_command(inf_t *inf)
 
 	if (child_pid is 0)
 	{
-		if (execve(inf->path, inf->av, get_environ(inf)) is - 1)
+		if (execve(inf->path, inf->av,
+			get_environ(inf)) is - 1)
 		{
 			free_inf(inf, 1);
 			exit((errno is EACCES) ? 126 : 1);
@@ -122,8 +123,10 @@ void fork_command(inf_t *inf)
 }
 
 /**
- * wait_and_update_status - Wait for child process to complete and update status
- * @inf: A pointer to the program's infrmation structure
+ * wait_and_update_status - Wait for
+ * child process to complete and update status
+ * @inf: A pointer to the program's infrmation
+ * structure
  *
  * Description:
  * This function waits for the child process to complete and updates the status
@@ -142,7 +145,8 @@ void wait_and_update_status(inf_t *inf)
 
 /**
  * handle_exit_status - Handle specific exit statuses and print errors
- * @inf: A pointer to the program's infrmation structure
+ * @inf: A pointer to the program's infrmation
+ * structure
  *
  * Description:
  * This function handles specific exit statuses and prints corresponding errors.
