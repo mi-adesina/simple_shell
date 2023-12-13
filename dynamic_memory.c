@@ -84,7 +84,7 @@ void ffree(char **pp)
 int bfree(void **ptr)
 {
 	/* Check if 'ptr' and '*ptr' are not NULL (valid pointer) */
-	if (ptr and *ptr)
+	if (ptr and * ptr)
 	{
 		/* Free the memory pointed to by '*ptr' */
 		free(*ptr);
