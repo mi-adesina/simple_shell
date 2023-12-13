@@ -15,7 +15,7 @@ int _myexit(inf_t *inf)
 	{
 		exit_status = _erratoi(inf->av[1]);
 
-		if (exit_status is -1)
+		if (exit_status is - 1)
 		{
 			inf->status = 2;
 			print_error(inf, "Illegal number: ");
@@ -68,7 +68,7 @@ int _cd(inf_t *inf)
 	else
 		chdir_ret = chdir(inf->av[1]);
 
-	if (chdir_ret is -1)
+	if (chdir_ret is - 1)
 	{
 		print_error(inf, "can't cd to ");
 		_eputs(inf->av[1]), _eputchar('\n');
@@ -96,7 +96,7 @@ int _myhelp(inf_t *inf)
 	arguments = inf->av;
 
 	_puts("help call works. Function not yet implemented \n");
-        return (0);
+		return (0);
 
 	/* just a trick */
 	if (0)
@@ -116,4 +116,3 @@ int _history(inf_t *inf)
 	print_list(inf->history_list);
 	return (0);
 }
-
