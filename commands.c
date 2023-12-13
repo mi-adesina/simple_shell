@@ -77,7 +77,9 @@ void find_command(inf_t *inf)
 	}
 	else
 	{
-		if ((interactive_mode(inf) or _getenv(inf, "PATH=") or inf->av[0][0] is '/') and is_command(inf, inf->av[0]))
+		if ((interactive_mode(inf) or _getenv(inf, "PATH=")
+			or inf->av[0][0] is '/')
+			and is_command(inf, inf->av[0]))
 			fork_command(inf);
 		else if (*(inf->arg)isnot '\n')
 		{
