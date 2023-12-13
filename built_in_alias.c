@@ -25,7 +25,7 @@ int print_alias(list_t *node)
 		node = node->next;
 	}
 
-	return 0;
+	return (0);
 }
 
 /**
@@ -44,7 +44,7 @@ int _myalias(inf_t *inf)
 	{
 		node = inf->alias_list;
 		print_alias(node);
-		return 0;
+		return (0);
 	}
 
 	i = 1;
@@ -60,7 +60,7 @@ int _myalias(inf_t *inf)
 		i++;
 	}
 
-	return 0;
+	return (0);
 }
 
 /**
@@ -76,7 +76,7 @@ int set_alias(inf_t *inf, char *alias_string)
 
 	equalSignPos = _strchr(alias_string, '=');
 	if (!equalSignPos)
-		return 1;
+		return (1);
 
 	if (!*++equalSignPos)
 		return unset_alias(inf, alias_string);
@@ -99,7 +99,7 @@ int unset_alias(inf_t *inf, char *unset)
 
 	equalSignPos = _strchr(unset, '=');
 	if (!equalSignPos)
-		return 1;
+		return (1);
 
 	savedChar = *equalSignPos;
 	*equalSignPos = 0;
@@ -109,7 +109,7 @@ int unset_alias(inf_t *inf, char *unset)
 
 	*equalSignPos = savedChar;
 
-	return unsetResult;
+	return (unsetResult);
 }
 
 /**
@@ -128,19 +128,19 @@ int replace_alias(inf_t *inf)
 	{
 		alias_entry = node_starts_with(inf->alias_list, inf->av[0], '=');
 		if (!alias_entry)
-			return 0;
+			return (0);
 
 		free(inf->av[0]);
 		alias_value = _strchr(alias_entry->str, '=');
 		if (!alias_value)
-			return 0;
+			return (0);
 
 		alias_value = _strdup(alias_value + 1);
 		if (!alias_value)
-			return 0;
+			return (0);
 
 		inf->av[0] = alias_value;
 	}
 
-	return 1;
+	return (1);
 }
