@@ -6,6 +6,7 @@
  *
  * Return: -2 to indicate the shell should exit, or 1 if there is an error.
  */
+
 int _myexit(inf_t *inf)
 {
 	int exit_status;
@@ -37,6 +38,7 @@ int _myexit(inf_t *inf)
  *
  * Return: 0 if the current directory is successfully changed, 1 on error.
  */
+
 int _cd(inf_t *inf)
 {
 	char *current_dir, *target_dir, buffer[1024];
@@ -86,6 +88,7 @@ int _cd(inf_t *inf)
  *
  * Return: Always returns 0 to indicate success.
  */
+
 int _myhelp(inf_t *inf)
 {
 	char **arguments;
@@ -107,6 +110,7 @@ int _myhelp(inf_t *inf)
  *
  * Return: Always returns 0 to indicate success.
  */
+
 int _history(inf_t *inf)
 {
 	print_list(inf->history_list);
