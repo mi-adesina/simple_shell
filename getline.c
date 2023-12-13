@@ -163,8 +163,8 @@ ssize_t input_buf(inf_t *inf, char **buf, size_t *len)
 			}
 
 			inf->line_count_flag = 1;
-			/* remove_comments(*buf); */
-			/* build_history_list(inf, *buf, inf->history_count++); */
+			remove_comments(*buf);
+
 
 			/* Check for command chaining here.*/
 			*len = bytes_read;
