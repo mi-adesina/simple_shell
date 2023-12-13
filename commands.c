@@ -151,7 +151,8 @@ void wait_and_update_status(inf_t *inf)
  * structure
  *
  * Description:
- * This function handles specific exit statuses and prints corresponding errors.
+ * This function handles specific exit statuses
+ * and prints corresponding errors.
  */
 void handle_exit_status(inf_t *inf)
 {
