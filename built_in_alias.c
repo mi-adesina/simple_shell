@@ -105,7 +105,7 @@ int unset_alias(inf_t *inf, char *unset)
 	*equalSignPos = 0;
 
 	unsetResult = delete_node_at_index(&(inf->alias_list),
-		get_node_index(inf->alias_list, 
+		get_node_index(inf->alias_list,
 			node_starts_with(inf->alias_list, unset, -1)));
 
 	*equalSignPos = savedChar;
