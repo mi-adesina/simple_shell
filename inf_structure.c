@@ -57,33 +57,31 @@ void set_inf(inf_t *inf, char **av)
  */
 void free_inf(inf_t *inf, int all)
 {
-    ffree(inf->av);
+	ffree(inf->av);
 
-    inf->av = NULL;
-    inf->path = NULL;
+	inf->av = NULL;
+	inf->path = NULL;
 
-    if (all)
-    {
+	if (all)
+	{
+		if (!inf->command_buffer)
+		free(inf->arg);
 
-	if (!inf->command_buffer)
-	    free(inf->arg);
+		if (inf->alias_list)
+			free_list(&(inf->alias_list));
+		if (inf->environ_list)
+			free_list(&(inf->environ_list));
+		if (inf->history_list)
+			free_list(&(inf->history_list));
 
-	if (inf->alias_list)
-	    free_list(&(inf->alias_list));
-	if (inf->environ_list)
-		free_list(&(inf->environ_list));
+		ffree(inf->environ);
+		inf->environ = NULL;
 
-	if (inf->history_list)
-	    free_list(&(inf->history_list));
+		bfree((void **)inf->command_buffer);
 
-	ffree(inf->environ);
-	inf->environ = NULL;
+		if (inf->read_fd > 2)
+			close(inf->read_fd);
 
-	bfree((void **)inf->command_buffer);
-
-	if (inf->read_fd > 2)
-	    close(inf->read_fd);
-
-	_putchar(BUFFER_FLUSH);
-    }
+		_putchar(BUFFER_FLUSH);
+	}
 }
