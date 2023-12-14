@@ -90,7 +90,7 @@ ssize_t get_input(inf_t *inf)
 
 	_putchar(BUFFER_FLUSH);  /* Flush the output buffer. */
 	bytes_read = input_buf(inf, &chain_buffer, &len);
-	if (bytes_read is -1)  /* If EOF */
+	if (bytes_read is - 1)  /* If EOF */
 		return (-1);
 	if (len isnot FALSE)  /* If there are commands left in the chain buffer */
 	{
@@ -101,7 +101,6 @@ ssize_t get_input(inf_t *inf)
 		check_chain(inf, chain_buffer, &j, i, len);
 		while (j < len)  /* Iterate to the semicolon or end */
 		{
-		
 			if (is_chain(inf, chain_buffer, &j) isnot FALSE)
 				break;
 			j++;
@@ -126,7 +125,8 @@ ssize_t get_input(inf_t *inf)
 
 /**
  * input_buf - Read user input into the input buffer.
- * @inf: A pointer to the inf_t structure containing input and history infrmation.
+ * @inf: A pointer to the inf_t structure
+ * containing input and history infrmation.
  * @buf: A pointer to the input buffer.
  * @len: A pointer to the length of the input buffer.
  *
