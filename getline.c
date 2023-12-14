@@ -16,8 +16,8 @@ int _getline(inf_t *inf, char **ptr, size_t *length)
 	ssize_t r;
 	size_t k, s = 0;
 	char *p, *new_p, *c;
-	p = *ptr;
 
+	p = *ptr;
 	if (p and length)
 		s = *length;
 
