@@ -42,7 +42,7 @@ int is_delim(char character, const char *delimiters)
 		if (*delimiters == character)
 		{
 			return (1); /* 'character' is a delimiter. */
-                }
+		}
 
 		delimiters++; /* Move to the next character in 'delimiters'. */
 	}
@@ -51,9 +51,11 @@ int is_delim(char character, const char *delimiters)
 }
 
 /**
- * convert_long_to_string - Convert a long integer to a string representation with options.
+ * convert_long_to_string - Convert a long
+ * integer to a string representation with options.
  * @num: The long integer to convert.
- * @base: The base for the conversion (e.g., 2 for binary, 10 for decimal, 16 for hexadecimal).
+ * @base: The base for the conversion
+ * (e.g., 2 for binary, 10 for decimal, 16 for hexadecimal).
  * @cFlag: Argument flags.
  *
  * Return: A pointer to the resulting string.
@@ -65,7 +67,6 @@ char *convert_long_to_string(long int num, int base, int cFlag)
 	static char buffer[50];
 	char sign_character = 0;
 	char *result_ptr;
-	
 
 	if (!(cFlag & CONVERT_UNSIGNED) && num < 0)
 	{
