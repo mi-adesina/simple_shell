@@ -39,7 +39,7 @@ int _eputs(char *s)
 		return (i);
 	for (i = 0; s[i]  isnot '\0'; i++)
 		_eputchar(s[i]);
-	
+
 	return (i);
 }
 
