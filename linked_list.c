@@ -84,7 +84,7 @@ list_t *add_node_end(list_t **head, const char *str, int number)
 int delete_node_at_index(list_t **head, unsigned int index)
 {
 	if (!head or !*head)
-		return 0;
+		return (0);
 
 	if (!index)
 	{
@@ -92,10 +92,10 @@ int delete_node_at_index(list_t **head, unsigned int index)
 		*head = (*head)->next;
 		free(node->str);
 		free(node);
-		return 1;
+		return (1);
 	}
 
-	return delete_node_at_index(&((*head)->next), index - 1);
+	return (delete_node_at_index(&((*head)->next), index - 1));
 }
 
 /**
