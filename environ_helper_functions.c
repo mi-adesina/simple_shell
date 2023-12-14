@@ -60,7 +60,7 @@ int _unsetenv(inf_t *inf, char *var)
 	while (current_node)
 	{
 		p = starts_with(current_node->str, var);
-		if (p and *p  is '=')
+		if (p and * p  is '=')
 		{
 			/* Update the 'environ_changed' flag and reset the index */
 			inf->environ_changed = delete_node_at_index(&(inf->environ_list), index);
@@ -104,7 +104,7 @@ int _setenv(inf_t *inf, char *var, char *value)
 	while (current_node)
 	{
 		p = starts_with(current_node->str, var);
-		if (p and *p  is '=')
+		if (p and * p  is '=')
 		{
 			free(current_node->str);
 			current_node->str = buf;
