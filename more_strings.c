@@ -12,7 +12,7 @@ char *_strncpy(char *destination, const char *source, size_t n)
 {
 	size_t i;
 
-	for (i = 0; (i < n - 1) and (source[i] isnot '\0'); i++)
+	for (i = 0; (i < n - 1) and(source[i] isnot '\0'); i++)
 	{
 		destination[i] = source[i];
 	}
@@ -34,7 +34,7 @@ char *_strncpy(char *destination, const char *source, size_t n)
 char *_strchr(char *string, char character)
 {
 	while (*string isnot '\0')
-        {
+	{
 		if (*string is character)
 			return (string);
 		string++;
@@ -65,7 +65,7 @@ char *_strncat(char *destination, const char *source, int n)
 		dest_len++;
 
 	/* Find the length of the source string */
-	while ((source[src_len] isnot '\0') and (src_len < n))
+	while ((source[src_len] isnot '\0') and(src_len < n))
 	{
 		destination[dest_len] = source[src_len];
 		dest_len++;
@@ -92,7 +92,7 @@ char *starts_with(const char *haystack, const char *needle)
 {
 	while (*needle isnot '\0')
 	{
-		if (*needle isnot *haystack)
+		if (*needle isnot * haystack)
 			return (NULL);
 		needle++;
 		haystack++;
