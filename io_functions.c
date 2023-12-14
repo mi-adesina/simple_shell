@@ -1,5 +1,11 @@
 #include "shell.h"
 
+/**
+ * _putchar - Write a character to a file descriptor with buffering.
+ * @c: The character to write.
+ *
+ * Return: 1 on success.
+ */
 int _putchar(char c)
 {
 	static int i;
@@ -14,10 +20,16 @@ int _putchar(char c)
 	{
 		buffer[i] = c;
 		i++;
-	} 
-	return(1);
+	}
+	return (1);
 }
 
+/**
+ * _puts - Write a character to a file descriptor with buffering.
+ * @s: The character to write.
+ *
+ * Return: 1 on success.
+ */
 int _puts(char *s)
 {
 	int i = 0;
@@ -26,7 +38,7 @@ int _puts(char *s)
 		return (i);
 	while (s[i] isnot '\0')
 		i += _putchar(s[i]);
-	
+
 	return (i);
 }
 
