@@ -16,7 +16,6 @@ int _getline(inf_t *inf, char **ptr, size_t *length)
 	ssize_t r;
 	size_t k, s = 0;
 	char *p, *new_p, *c;
-
 	p = *ptr;
 	if (p and length)
 		s = *length;
@@ -31,7 +30,6 @@ int _getline(inf_t *inf, char **ptr, size_t *length)
 
 	c = _strchr(buf + i, '\n');
 	k = c ? 1 + (unsigned int)(c - buf) : len;
-
 	new_p = _realloc(p, s, s ? s + k : k + 1);
 
 	if (!new_p)
@@ -39,12 +37,10 @@ int _getline(inf_t *inf, char **ptr, size_t *length)
 		free(p);
 		return (-1);  /* MALLOC FAILURE! */
 	}
-
 	if (s)
 		_strncat(new_p, buf + i, k - i);
 	else
 		_strncpy(new_p, buf + i, k - i + 1);
-
 	s += k - i;
 	i = k;
 	p = new_p;
