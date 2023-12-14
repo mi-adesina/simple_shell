@@ -11,19 +11,19 @@
  */
 char *dup_characters(char *pathstr, int start_idx, int end_idx)
 {
-        static char duplicated_buffer[1024];
-        int source_idx = start_idx, duplicated_idx = 0;
+	static char duplicated_buffer[1024];
+	int source_idx = start_idx, duplicated_idx = 0;
 
-        while (source_idx < end_idx)
-        {
-                if (pathstr[source_idx] != ':')
-                {
-                        duplicated_buffer[duplicated_idx++] = pathstr[source_idx];
-                }
-                source_idx++;
-        }
-        duplicated_buffer[duplicated_idx] = '\0';
-        return duplicated_buffer;
+	while (source_idx < end_idx)
+	{
+		if (pathstr[source_idx] != ':')
+		{
+			duplicated_buffer[duplicated_idx++] = pathstr[source_idx];
+		}
+		source_idx++;
+	}
+	duplicated_buffer[duplicated_idx] = '\0';
+	return (duplicated_buffer);
 }
 
 /**
@@ -35,19 +35,19 @@ char *dup_characters(char *pathstr, int start_idx, int end_idx)
  */
 int is_delim(char character, const char *delimiters)
 {
-        /* Iterate through the 'delimiters' string. */
-        while (*delimiters)
-        {
-                /* Check if the current character matches 'character'. */
-                if (*delimiters == character)
-                {
-                        return 1; /* 'character' is a delimiter. */
+	/* Iterate through the 'delimiters' string. */
+	while (*delimiters)
+	{
+		/* Check if the current character matches 'character'. */
+		if (*delimiters == character)
+		{
+			return (1); /* 'character' is a delimiter. */
                 }
 
-                delimiters++; /* Move to the next character in 'delimiters'. */
-        }
+		delimiters++; /* Move to the next character in 'delimiters'. */
+	}
 
-        return 0; /* 'character' is not a delimiter. */
+	return (0); /* 'character' is not a delimiter. */
 }
 
 /**
