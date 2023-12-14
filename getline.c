@@ -53,7 +53,7 @@ int _getline(inf_t *inf, char **ptr, size_t *length)
 }
 
 /**
- * read_buf - Read data from a file descriptor into a buffer and
+ * read_buffer - Read data from a file descriptor into a buffer and
  *            update the buffer position.
  * @buf: A pointer to the buffer where data will be read into.
  * @buf_pos: A pointer to the position within the buffer.
