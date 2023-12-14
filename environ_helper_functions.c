@@ -1,8 +1,8 @@
 #include "shell.h"
 
 /**
- * print_and_count_environment_variables -
- * Print and count environment variables.
+ * print_and_count_environment_variables - Print and
+ * count environment variables.
  * @head: A pointer to the head of the linked list of environment variables.
  *
  * Return: The number of environment variables printed.
