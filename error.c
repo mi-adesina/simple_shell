@@ -30,6 +30,7 @@ int _eputchar(char c)
 /**
  * _eputs - Print a string character by character to the standard error stream.
  * @s: The string to be printed to the standard error stream.
+ * Return: i
  */
 int _eputs(char *s)
 {
