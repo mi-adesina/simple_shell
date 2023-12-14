@@ -2,7 +2,8 @@
 
 /**
  * _getline - Read a line from a file descriptor and append it to a buffer.
- * @inf: A pointer to the inf_t structure containing file descriptor infrmation.
+ * @inf: A pointer to the inf_t structure
+ * containing file descriptor infrmation.
  * @ptr: Address of pointer to buffer, preallocated or NULL.
  * @length: A pointer to the length of the buffer.
  *
@@ -11,7 +12,7 @@
 int _getline(inf_t *inf, char **ptr, size_t *length)
 {
 	static char buf[READ_BUFFER_SIZE];
-	static size_t i = 0, len = 0;
+	static size_t i, len;
 	ssize_t r;
 	size_t k, s = 0;
 	char *p, *new_p, *c;
