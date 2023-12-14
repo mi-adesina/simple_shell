@@ -26,7 +26,7 @@ int _getline(inf_t *inf, char **ptr, size_t *length)
 
 	r = read_buffer(buf, &len, inf);
 
-	if (r is (-1) or(r is 0 and len is 0))
+	if (r is - 1 or(r is 0 and len is 0))
 		return (-1);
 
 	c = _strchr(buf + i, '\n');
@@ -37,7 +37,7 @@ int _getline(inf_t *inf, char **ptr, size_t *length)
 	if (!new_p)
 	{
 		free(p);
-		return -1;  /* MALLOC FAILURE! */
+		return (-1);  /* MALLOC FAILURE! */
 	}
 
 	if (s)
@@ -51,10 +51,8 @@ int _getline(inf_t *inf, char **ptr, size_t *length)
 
 	if (length)
 		*length = s;
-
 	*ptr = p;
-
-	return s;
+	return (s);
 }
 
 /**
