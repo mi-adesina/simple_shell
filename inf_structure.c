@@ -13,40 +13,41 @@ void clear_inf(inf_t *inf)
 }
 
 /**
- * set_inf - Set infrmation in the inf_t structure based on command-line arguments.
+ * set_inf - Set infrmation in the inf_t structure
+ * based on command-line arguments.
  * @inf: Pointer to the inf_t structure.
  * @av: Array of strings representing command-line arguments.
  */
 void set_inf(inf_t *inf, char **av)
 {
-    int i = 0;
+	int i = 0;
 
-    inf->file_name = av[0];
+	inf->file_name = av[0];
 
-    if (inf->arg)
-    {
-	inf->av = strtow(inf->arg, " \t");
-
-	if (!inf->av)
+	if (inf->arg)
 	{
-	    inf->av = malloc(sizeof(char *) * 2);
+		inf->av = strtow(inf->arg, " \t");
 
-	    if (inf->av)
-	    {
-		inf->av[0] = _strdup(inf->arg);
-		inf->av[1] = NULL;
-	    }
+		if (!inf->av)
+		{
+			inf->av = malloc(sizeof(char *) * 2);
+
+			if (inf->av)
+			{
+				inf->av[0] = _strdup(inf->arg);
+				inf->av[1] = NULL;
+			}
+		}
+
+		i = 0;
+		while (inf->av and inf->av[i])
+			i++;
+
+		inf->ac = i;
+
+		replace_alias(inf);
+		replace_variables(inf);
 	}
-
-	i = 0;
-	while (inf->av and inf->av[i])
-	    i++;
-
-	inf->ac = i;
-
-	replace_alias(inf);
-	replace_variables(inf);
-    }
 }
 
 /**
