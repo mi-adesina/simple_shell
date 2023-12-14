@@ -13,14 +13,14 @@ int is_command(inf_t *inf, char *path)
     (void)inf;
 
     if (stat(path, &file_stat) or !path)
-        return 0; 
+        return (0); 
 
     if (S_ISREG(file_stat.st_mode))
     {
-        return 1; /*valid command. */
+        return (1); /*valid command. */
     }
 
-    return 0; /* not a valid command */
+    return (0); /* not a valid command */
 }
 
 /**
@@ -42,7 +42,7 @@ char *find_path(inf_t *inf, char *pathstr, char *command)
     if ((_strlen(command) > 2) && starts_with(command, "./"))
     {
         if (is_command(inf, command))
-            return command;
+            return (command);
     }
     while (pathstr[i])
     {
@@ -72,6 +72,6 @@ char *find_path(inf_t *inf, char *pathstr, char *command)
         _strcat(path, command);
     }
     if (is_command(inf, path))
-        return path;
-    return NULL;
+        return (path);
+    return (NULL);
 }
