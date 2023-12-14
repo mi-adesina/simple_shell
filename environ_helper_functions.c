@@ -1,24 +1,25 @@
 #include "shell.h"
 
 /**
- * print_and_count_environment_variables - Print and count environment variables.
+ * print_and_count_environment_variables -
+ * Print and count environment variables.
  * @head: A pointer to the head of the linked list of environment variables.
  *
  * Return: The number of environment variables printed.
  */
 size_t print_and_count_environment_variables(const list_t *head)
 {
-        size_t count = 0;
+	size_t count = 0;
 
-        while (head)
-        {
-                _puts(head->str ? head->str : "(nil)");
-                _puts("\n");
-                head = head->next;
-                count++;
-        }
+	while (head)
+	{
+		_puts(head->str ? head->str : "(nil)");
+		_puts("\n");
+		head = head->next;
+		count++;
+	}
 
-        return (count);
+	return (count);
 }
 
 /**
@@ -29,13 +30,13 @@ size_t print_and_count_environment_variables(const list_t *head)
  */
 char **get_environ(inf_t *inf)
 {
-        if (!inf->environ_list or inf->environ_changed)
-        {
-                inf->environ = list_to_strings(inf->environ_list);
-                inf->environ_changed = 0;
-        }
+	if (!inf->environ_list or inf->environ_changed)
+	{
+		inf->environ = list_to_strings(inf->environ_list);
+		inf->environ_changed = 0;
+	}
 
-        return inf->environ;
+	return (inf->environ);
 }
 
 /**
