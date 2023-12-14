@@ -26,7 +26,7 @@ int _getline(inf_t *inf, char **ptr, size_t *length)
 
 	r = read_buffer(buf, &len, inf);
 
-	if (r is -1 or(r is 0 and len is 0))
+	if (r is (-1) or(r is 0 and len is 0))
 		return (-1);
 
 	c = _strchr(buf + i, '\n');
