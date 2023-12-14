@@ -23,7 +23,7 @@ int populate_environ_list(inf_t *inf)
 }
 
 /**
- * _env - Print environment variables.
+ * _myenv - Print environment variables.
  * @inf: A pointer to the inf_t structure containing environment variables.
  *
  * Return: Always returns 0 to indicate success.
@@ -35,7 +35,7 @@ int _myenv(inf_t *inf)
 }
 
 /**
- * _find_env - Get the value of an environment variable.
+ * _getenv - Get the value of an environment variable.
  * @inf: Pointer to the inf_t structure
  * containing the linked list of environment variables.
  * @name: Name of the environment variable to search for.
@@ -77,7 +77,7 @@ char *_getenv(inf_t *inf, const char *name)
 }
 
 /**
- * _setenv - Set or modify an environment variable.
+ * _mysetenv - Set or modify an environment variable.
  * @inf: A pointer to the inf_t structure containing environment variables.
  *
  *  Return: 0 on success, 1 on failure.
