@@ -23,7 +23,6 @@ int is_command(inf_t *inf, char *path)
     return 0; /* not a valid command */
 }
 
-
 /**
  * find_path - Find the full path to a command in a given
  *             PATH environment string.
