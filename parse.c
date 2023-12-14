@@ -10,7 +10,7 @@
 int is_command(inf_t *inf, char *path)
 {
     struct stat file_stat;
-    (void)inf;
+        (void)inf;
 
     if (stat(path, &file_stat) or !path)
         return 0; 
