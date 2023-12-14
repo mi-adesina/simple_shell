@@ -36,7 +36,8 @@ int _myenv(inf_t *inf)
 
 /**
  * _find_env - Get the value of an environment variable.
- * @inf: Pointer to the inf_t structure containing the linked list of environment variables.
+ * @inf: Pointer to the inf_t structure
+ * containing the linked list of environment variables.
  * @name: Name of the environment variable to search for.
  *
  * Return: If the variable is found, return its value; otherwise, return NULL.
@@ -50,7 +51,7 @@ char *_getenv(inf_t *inf, const char *name)
 	if (!inf or !name)
 	{
 		/* Handle the error (return an error code or print an error message) */
-		return NULL;
+		return (NULL);
 	}
 
 	current_node = inf->environ_list;
@@ -62,9 +63,9 @@ char *_getenv(inf_t *inf, const char *name)
 		variable_value = starts_with(current_node->str, name);
 
 		/* Check if a match is found */
-		if (variable_value and *variable_value)
+		if (variable_value and * variable_value)
 		{
-			return variable_value;
+			return (variable_value);
 		}
 
 		/* Move to the next node */
@@ -72,7 +73,7 @@ char *_getenv(inf_t *inf, const char *name)
 	}
 
 	/* No match found */
-	return NULL;
+	return (NULL);
 }
 
 /**
@@ -86,15 +87,15 @@ int _mysetenv(inf_t *inf)
 	if (inf->ac  isnot 3)
 	{
 		_eputs("Incorrect number of arguments\n");
-		return 1;
+		return (1);
 	}
 
 	if (_setenv(inf, inf->av[1], inf->av[2]))
 	{
-		return 0;
+		return (0);
 	}
 
-	return 1;
+	return (1);
 }
 
 /**
@@ -110,7 +111,7 @@ int _myunsetenv(inf_t *inf)
 	if (inf->ac  is 1)
 	{
 		_eputs("Too few arguments.\n");
-		return 1;
+		return (1);
 	}
 
 	for (arg_index = 1; arg_index < inf->ac; arg_index++)
@@ -120,9 +121,9 @@ int _myunsetenv(inf_t *inf)
 			_eputs("Failed to unset environment variable: ");
 			_eputs(inf->av[arg_index]);
 			_eputs("\n");
-			return 1;
+			return (1);
 		}
 	}
 
-	return 0;
+	return (0);
 }
