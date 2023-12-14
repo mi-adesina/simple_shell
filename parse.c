@@ -45,7 +45,6 @@ char *find_path(inf_t *inf, char *pathstr, char *command)
         if (is_command(inf, command))
             return command;
     }
-
     while (pathstr[i])
     {
         if (pathstr[i] == ':')
@@ -65,7 +64,6 @@ char *find_path(inf_t *inf, char *pathstr, char *command)
         }
         i++;
     }
-
     path = dup_characters(pathstr, current_position, i);
     if (!*path)
         _strcat(path, command);
@@ -76,7 +74,5 @@ char *find_path(inf_t *inf, char *pathstr, char *command)
     }
     if (is_command(inf, path))
         return path;
-
     return NULL;
 }
-
