@@ -108,4 +108,3 @@ int shell_loop(__attribute__((unused)) char **av, inf_t *inf)
 
 	return (built_in_status);
 }
-
